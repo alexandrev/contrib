@@ -1,10 +1,10 @@
-package sqlquery
+package insertquery
 
 import (
 	"database/sql"
 	"fmt"
 
-	"github.com/project-flogo/contrib/activity/sqlquery/util"
+	"github.com/project-flogo/contrib/activity/insertquery/util"
 	"github.com/project-flogo/core/activity"
 	"github.com/project-flogo/core/data/metadata"
 	"github.com/project-flogo/core/support/log"
