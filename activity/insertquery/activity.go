@@ -2,7 +2,6 @@ package insertquery
 
 import (
 	"database/sql"
-	"fmt"
 
 	"github.com/project-flogo/contrib/activity/sqlquery/util"
 	"github.com/project-flogo/core/activity"
@@ -108,33 +107,20 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 func (a *Activity) doSelect(params map[string]interface{}) (interface{}, error) {
 
 	var err error
-	var rows *sql.Rows
+
+	var result
 
 	if a.stmt != nil {
 		args := a.sqlStatement.GetPreparedStatementArgs(params)
-		rows, err = a.stmt.Exec(args...)
+		result, err = a.stmt.Exec(args...)
 	} else {
-		rows, err = a.db.Exec(a.sqlStatement.ToStatementSQL(params))
+		result, err = a.db.Exec(a.sqlStatement.ToStatementSQL(params))
 	}
 	if err != nil {
 		return nil, err
 	}
 
-	defer rows.Close()
-
-	var results interface{}
-
-	if a.labeledResults {
-		results, err = getLabeledResults(a.dbHelper, rows)
-	} else {
-		results, err = getResults(a.dbHelper, rows)
-	}
-
-	if err != nil {
-		return nil, err
-	}
-
-	return results, nil
+	return result, nil
 }
 
 func getLabeledResults(dbHelper util.DbHelper, rows *sql.Rows) ([]map[string]interface{}, error) {
