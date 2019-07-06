@@ -1,4 +1,4 @@
-package insertquery
+package sqlexec
 
 import (
 	"database/sql"
@@ -91,7 +91,7 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 		return false, err
 	}
 
-	results, err := a.doSelect(in.Params)
+	results, err := a.doExec(in.Params)
 	if err != nil {
 		return false, err
 	}
@@ -104,7 +104,7 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 	return true, nil
 }
 
-func (a *Activity) doSelect(params map[string]interface{}) (interface{}, error) {
+func (a *Activity) doExec(params map[string]interface{}) (interface{}, error) {
 
 	var err error
 
@@ -121,76 +121,6 @@ func (a *Activity) doSelect(params map[string]interface{}) (interface{}, error) 
 	}
 
 	return result, nil
-}
-
-func getLabeledResults(dbHelper util.DbHelper, rows *sql.Rows) ([]map[string]interface{}, error) {
-	columns, err := rows.Columns()
-	if err != nil {
-		return nil, err
-	}
-
-	columnTypes, err := rows.ColumnTypes()
-	if err != nil {
-		return nil, err
-	}
-
-	var results []map[string]interface{}
-
-	for rows.Next() {
-
-		values := make([]interface{}, len(columnTypes))
-		for i := range values {
-			values[i] = dbHelper.GetScanType(columnTypes[i])
-		}
-
-		err = rows.Scan(values...)
-		if err != nil {
-			return nil, err
-		}
-
-		err = rows.Scan(values...)
-		if err != nil {
-			return nil, err
-		}
-
-		resMap := make(map[string]interface{}, len(columns))
-		for i, column := range columns {
-			resMap[column] = *(values[i].(*interface{}))
-		}
-
-		//todo do we need to do column mapping
-
-		results = append(results, resMap)
-	}
-
-	return results, rows.Err()
-}
-
-func getResults(dbHelper util.DbHelper, rows *sql.Rows) ([][]interface{}, error) {
-
-	columnTypes, err := rows.ColumnTypes()
-	if err != nil {
-		return nil, err
-	}
-
-	var results [][]interface{}
-
-	for rows.Next() {
-
-		values := make([]interface{}, len(columnTypes))
-		for i := range values {
-			values[i] = dbHelper.GetScanType(columnTypes[i])
-		}
-
-		err = rows.Scan(values...)
-		if err != nil {
-			return nil, err
-		}
-
-		results = append(results, values)
-	}
-
-	return results, rows.Err()
 }
 
 //todo move to shared connection

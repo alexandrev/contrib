@@ -1,4 +1,4 @@
-package insertquery
+package sqlexec
 
 import (
 	"testing"

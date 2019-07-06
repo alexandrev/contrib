@@ -1,4 +1,4 @@
-package insertquery
+package sqlexec
 
 import "github.com/project-flogo/core/data/coerce"
 
@@ -18,8 +18,7 @@ type Input struct {
 }
 
 type Output struct {
-	ColumnNames []interface{} `md:"columnNames"`
-	Results     interface{}   `md:"results"`
+	Results interface{} `md:"results"`
 }
 
 // FromMap converts the values from a map into the struct Input

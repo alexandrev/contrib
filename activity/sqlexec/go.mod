@@ -1,4 +1,4 @@
-module github.com/alexandrev/contrib/activity/insertquery
+module github.com/alexandrev/contrib/activity/sqlexec
 
 go 1.12
 
