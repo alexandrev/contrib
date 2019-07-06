@@ -1,4 +1,4 @@
-module github.com/project-flogo/contrib/activity/insertquery
+module github.com/alexandrev/contrib/activity/insertquery
 
 go 1.12
 
