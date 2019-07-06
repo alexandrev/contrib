@@ -108,7 +108,7 @@ func (a *Activity) doSelect(params map[string]interface{}) (interface{}, error) 
 
 	var err error
 
-	var result
+	var result interface{}
 
 	if a.stmt != nil {
 		args := a.sqlStatement.GetPreparedStatementArgs(params)
