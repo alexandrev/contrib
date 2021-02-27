@@ -1,0 +1,32 @@
+{
+    "name": "getClaims",
+    "author": "Alexandre Vazquez",
+    "version": "1.0.0",
+    "type": "flogo:activity",
+    "title": "TCI Stats to Prometheus Format",
+    "display": {
+        "description": "Adapt from TCI Metrics Stats to Prometheus Format",
+        "category": "Default",
+        "visible": true
+    },
+    "feature": {
+        "iterator": {
+            "type": "iterator",
+            "enabled": true
+        }
+    },
+    "ref": "github.com/alexandrev/activity/tcitoprommetrics",
+    "inputs": [
+        {
+            "name": "appMetrics",
+            "type": "object",
+            "value": "[{\"app\":{\"appId\":\"arsk6ocpgesne56ms7m7wboovgqxnkx7\",\"appName\":\"New_Flogo_App_0\",\"appType\":\"flogo\",\"category\":\"develop\",\"createdTime\":0,\"deploymentStage\":\"draft\",\"deploymentType\":\"TIBCO Cloud\",\"desiredInstanceCount\":1,\"endpointVisibility\":\"public\",\"lastStartedTime\":1614283643433,\"modifiedTime\":1614283627530},\"appMetrics\":{\"tci_app_executions\":[{\"labels\":{\"status\":\"success\"},\"value\":47743},{\"labels\":{\"status\":\"failure\"},\"value\":0}],\"tci_app_instances_cpu\":[{\"labels\":{\"status\":\"max\"},\"value\":2.4000000953674316},{\"labels\":{\"status\":\"min\"},\"value\":0},{\"labels\":{\"status\":\"avg\"},\"value\":0.46964174198100284}],\"tci_app_instances_memory\":[{\"labels\":{\"status\":\"max\"},\"value\":13.9399995803833},{\"labels\":{\"status\":\"min\"},\"value\":7.400000095367432},{\"labels\":{\"status\":\"avg\"},\"value\":9.481018215961088}],\"tci_app_since_last_execution\":[{\"value\":0.32}]}}]"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "data",
+            "type": "string"
+        }
+    ]
+}
