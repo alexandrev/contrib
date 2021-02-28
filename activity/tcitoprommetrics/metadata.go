@@ -70,8 +70,8 @@ type Labels struct {
 	Status string `md:"status"`
 }
 type TciAppExecutions struct {
-	Labels Labels `md:"labels"`
-	Value  int    `md:"value"`
+	Labels Labels  `md:"labels"`
+	Value  float64 `md:"value"`
 }
 type TciAppInstancesCPU struct {
 	Labels Labels  `md:"labels"`
