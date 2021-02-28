@@ -35,6 +35,7 @@ func (a *Activity) Metadata() *activity.Metadata {
 	return activityMd
 }
 
+//Method to format TCI Stats to Prom
 func FormatToPrometheus(mList MetricList) string {
 	var sb strings.Builder
 	for _, metric := range mList.Metrics {
@@ -94,45 +95,55 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 				pLabels["appInstance"] = appID
 				pLabels["appType"] = appType
 
-				pMetricCount := list.Create("flow_execution_count", "Total number of times the flow is started, completed, or failed", "counter")
-				pLabelsAdditionalCompleted := make(map[string]string)
-				for k, v := range pLabels {
-					pLabelsAdditionalCompleted[k] = v
-				}
-				pLabelsAdditionalCompleted["status"] = "Completed"
-				pMetricCount.Add(pLabelsAdditionalCompleted, float64(flow.Completed))
-				pLabelsAdditionalFailed := make(map[string]string)
-				for k, v := range pLabels {
-					pLabelsAdditionalFailed[k] = v
-				}
-				pLabelsAdditionalFailed["status"] = "Failed"
-				pMetricCount.Add(pLabelsAdditionalFailed, float64(flow.Failed))
-				pLabelsAdditionalStarted := make(map[string]string)
-				for k, v := range pLabels {
-					pLabelsAdditionalStarted[k] = v
-				}
-				pLabelsAdditionalStarted["status"] = "Started"
-				pMetricCount.Add(pLabelsAdditionalStarted, float64(flow.Started))
+				if appType != "" && appName != "" && appID != "" {
 
-				pMetricDuration := list.Create("flow_duration_msec", "Total time (in ms) taken by the flow for successful completion or failure", "gauge")
-				pMetricDuration.Add(pLabels, float64(flow.AvgExecTime))
+					pMetricCount := list.Create("flow_execution_count", "Total number of times the flow is started, completed, or failed", "counter")
+					pLabelsAdditionalCompleted := make(map[string]string)
+					for k, v := range pLabels {
+						pLabelsAdditionalCompleted[k] = v
+					}
+					pLabelsAdditionalCompleted["status"] = "Completed"
+					pMetricCount.Add(pLabelsAdditionalCompleted, float64(flow.Completed))
+					pLabelsAdditionalFailed := make(map[string]string)
+					for k, v := range pLabels {
+						pLabelsAdditionalFailed[k] = v
+					}
+					pLabelsAdditionalFailed["status"] = "Failed"
+					pMetricCount.Add(pLabelsAdditionalFailed, float64(flow.Failed))
+					pLabelsAdditionalStarted := make(map[string]string)
+					for k, v := range pLabels {
+						pLabelsAdditionalStarted[k] = v
+					}
+					pLabelsAdditionalStarted["status"] = "Started"
+					pMetricCount.Add(pLabelsAdditionalStarted, float64(flow.Started))
+
+					pMetricDuration := list.Create("flow_duration_msec", "Total time (in ms) taken by the flow for successful completion or failure", "gauge")
+					pMetricDuration.Add(pLabels, float64(flow.AvgExecTime))
+
+				}
 
 			}
 
 		}
 
 		for _, a := range metric.AppMetrics.TciAppInstancesCPU {
-			pAppCPUUsage := list.Create("app_cpu_usage", "CPU Usage Percentage", "gauge")
-			pAppCPUUsageLabel := make(map[string]string)
-			pAppCPUUsageLabel["status"] = a.Labels.Status
-			pAppCPUUsage.Add(pAppCPUUsageLabel, float64(a.Value))
+
+			if a.Labels.Status != "" {
+				pAppCPUUsage := list.Create("app_cpu_usage", "CPU Usage Percentage", "gauge")
+				pAppCPUUsageLabel := make(map[string]string)
+				pAppCPUUsageLabel["status"] = a.Labels.Status
+				pAppCPUUsage.Add(pAppCPUUsageLabel, float64(a.Value))
+			}
 		}
 
 		for _, a := range metric.AppMetrics.TciAppInstancesMemory {
-			pAppMemoryUsage := list.Create("app_memory_used", "Memory Used Percentage", "gauge")
-			pAppMemoryUsageLabel := make(map[string]string)
-			pAppMemoryUsageLabel["status"] = a.Labels.Status
-			pAppMemoryUsage.Add(pAppMemoryUsageLabel, float64(a.Value))
+
+			if a.Labels.Status != "" {
+				pAppMemoryUsage := list.Create("app_memory_used", "Memory Used Percentage", "gauge")
+				pAppMemoryUsageLabel := make(map[string]string)
+				pAppMemoryUsageLabel["status"] = a.Labels.Status
+				pAppMemoryUsage.Add(pAppMemoryUsageLabel, float64(a.Value))
+			}
 		}
 
 	}
