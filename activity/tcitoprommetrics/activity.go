@@ -128,6 +128,7 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
 		for _, a := range metric.AppMetrics.TciAppInstancesCPU {
 
+			println(a)
 			if a.Labels.Status != "" {
 				pAppCPUUsage := list.Create("app_cpu_usage", "CPU Usage Percentage", "gauge")
 				pAppCPUUsageLabel := make(map[string]string)
@@ -138,6 +139,7 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
 		for _, a := range metric.AppMetrics.TciAppInstancesMemory {
 
+			println(a)
 			if a.Labels.Status != "" {
 				pAppMemoryUsage := list.Create("app_memory_used", "Memory Used Percentage", "gauge")
 				pAppMemoryUsageLabel := make(map[string]string)
