@@ -126,6 +126,8 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
 		}
 
+		println(len(metric.AppMetrics.TciAppInstancesCPU))
+
 		for _, a := range metric.AppMetrics.TciAppInstancesCPU {
 
 			println(a.Labels.Status)
