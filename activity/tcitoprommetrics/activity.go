@@ -126,16 +126,17 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
 		}
 
-		println(len(metric.AppMetrics.TciAppInstancesCPU))
+		pLabelsApp := make(map[string]string)
+
+		pLabelsApp["appName"] = appName
+		pLabelsApp["appType"] = appType
 
 		for _, a := range metric.AppMetrics.TciAppInstancesCPU {
 
 			println(a.Labels.Status)
 			if a.Labels.Status != "" {
-				pAppCPUUsage := list.Create("app_cpu_usage", "CPU Usage Percentage", "gauge")
-				pAppCPUUsageLabel := make(map[string]string)
-				pAppCPUUsageLabel["status"] = a.Labels.Status
-				pAppCPUUsage.Add(pAppCPUUsageLabel, float64(a.Value))
+				pAppCPUUsage := list.Create(a.Labels.Status+"_app_cpu_usage", "CPU Usage Percentage", "gauge")
+				pAppCPUUsage.Add(pLabelsApp, float64(a.Value))
 			}
 		}
 
@@ -143,10 +144,8 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
 			println(a.Labels.Status)
 			if a.Labels.Status != "" {
-				pAppMemoryUsage := list.Create("app_memory_used", "Memory Used Percentage", "gauge")
-				pAppMemoryUsageLabel := make(map[string]string)
-				pAppMemoryUsageLabel["status"] = a.Labels.Status
-				pAppMemoryUsage.Add(pAppMemoryUsageLabel, float64(a.Value))
+				pAppMemoryUsage := list.Create(a.Labels.Status+"_app_memory_used", "Memory Used Percentage", "gauge")
+				pAppMemoryUsage.Add(pLabelsApp, float64(a.Value))
 			}
 		}
 
