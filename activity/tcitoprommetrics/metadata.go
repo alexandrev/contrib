@@ -70,8 +70,8 @@ type Labels struct {
 	Status string `md:"status"`
 }
 type TciAppExecutions struct {
-	Labels Labels  `md:"labels,omitempty"`
-	Value  float64 `md:"value,omitempty"`
+	Labels Labels `md:"labels,omitempty"`
+	Value  int    `md:"value,omitempty"`
 }
 type TciAppInstancesCPU struct {
 	Labels Labels  `md:"labels,omitempty"`
@@ -85,10 +85,10 @@ type TciAppSinceLastExecution struct {
 	Value float64 `md:"value"`
 }
 type AppMetrics struct {
-	TciAppExecutions         []TciAppExecutions         `md:"tci_app_executions,omitempty"`
-	TciAppInstancesCPU       []TciAppInstancesCPU       `md:"tci_app_instances_cpu,omitempty"`
-	TciAppInstancesMemory    []TciAppInstancesMemory    `md:"tci_app_instances_memory,omitempty"`
-	TciAppSinceLastExecution []TciAppSinceLastExecution `md:"tci_app_since_last_execution,omitempty"`
+	TciAppExecutions         []TciAppExecutions         `md:"tciAppExecutions"`
+	TciAppInstancesCPU       []TciAppInstancesCPU       `md:"tciAppInstancesCpu"`
+	TciAppInstancesMemory    []TciAppInstancesMemory    `md:"tciAppInstancesMemory"`
+	TciAppSinceLastExecution []TciAppSinceLastExecution `md:"tciAppSinceLastExecution"`
 }
 
 type Sample struct {

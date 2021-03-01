@@ -39,6 +39,11 @@ func TestPromMetrics(t *testing.T) {
 	d.MaxExecTime = 1.2
 	d.MinExecTime = 1.0
 
+	//	kkk := []byte(`{\"tci_app_executions\":[{\"labels\":{\"status\":\"success\"},\"value\":2},{\"labels\":{\"status\":\"failure\"},\"value\":0}],\"tci_app_instances_cpu\":[{\"labels\":{\"status\":\"max\"},\"value\":2.4000000953674316},{\"labels\":{\"status\":\"min\"},\"value\":0},{\"labels\":{\"status\":\"avg\"},\"value\":0.15750000238832512}],\"tci_app_instances_memory\":[{\"labels\":{\"status\":\"max\"},\"value\":27},{\"labels\":{\"status\":\"min\"},\"value\":26.450000762939453},{\"labels\":{\"status\":\"avg\"},\"value\":26.72612153159244}]}`)
+	//	newValue := AppMetrics{}
+	//	err := json.Unmarshal(kkk, &newValue)
+	//	println(newValue.TciAppExecutions[0].Value)
+
 	c.AppInstanceMetrics.Flows = append(c.AppInstanceMetrics.Flows, d)
 
 	b.AppInstanceMetrics = append(b.AppInstanceMetrics, c)
