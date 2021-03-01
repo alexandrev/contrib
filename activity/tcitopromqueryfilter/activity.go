@@ -52,8 +52,12 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
 	tokens := strings.Split(input.Query, ",")
 	for _, token := range tokens {
-		parts := strings.Split(token, "=")
-		filter[parts[0]] = parts[1]
+		if token != "" {
+			parts := strings.Split(token, "=")
+			if len(parts) == 2 {
+				filter[parts[0]] = parts[1]
+			}
+		}
 	}
 
 	output := &Output{
