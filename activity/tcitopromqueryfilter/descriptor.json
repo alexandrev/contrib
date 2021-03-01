@@ -1,0 +1,31 @@
+{
+    "name": "TCIPromQueryFilter",
+    "author": "Alexandre Vazquez",
+    "version": "1.0.0",
+    "type": "flogo:activity",
+    "title": "TCI Query format",
+    "display": {
+        "description": "Format query to be use in TCI exporter for Proemtheus",
+        "category": "Default",
+        "visible": true
+    },
+    "feature": {
+        "iterator": {
+            "type": "iterator",
+            "enabled": true
+        }
+    },
+    "ref": "github.com/alexandrev/contrib/activity/tcitopromqueryfilter",
+    "inputs": [
+        {
+            "name": "query",
+            "type": "string"
+      }
+    ],
+    "outputs": [
+        {
+            "name": "filter",
+            "type": "object"
+        }
+    ]
+}
