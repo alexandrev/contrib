@@ -1,0 +1,78 @@
+{
+  "name": "fwk-genctx",
+  "type": "flogo:activity",
+  "version": "1.0.0",
+  "title": "GenerateContext",
+  "author": "Alexandre Vazquez",
+  "display": {
+      "description": "Generate Context to be used as part of the flow",
+      "category": "Framework",
+      "visible": true
+  },
+  "feature": {
+      "iterator": {
+          "type": "iterator",
+          "enabled": true
+      }
+  },
+  "ref": "github.com/alexandrev/contrib/activity/genctx",
+  "description": "Generate a Context to be use as part of the flow",
+  "input": [
+    {
+      "name": "flow",
+      "type": "string",
+      "value": "",
+      "description": "Name of the flow in which activity is executing"
+    },
+    {
+      "name": "externalID",
+      "type": "string",
+      "value": "",
+      "description": "External ID of the request"
+    }
+  ],
+  "output":[
+    {
+      "name": "flow",
+      "type": "string",
+      "value": "",
+      "description": "Name of the flow in which activity is executing"
+    },
+    {
+      "name": "flowID",
+      "type": "string",
+      "value": "",
+      "description": "Id of the flow"
+    },
+    {
+      "name": "applicationName",
+      "type": "string",
+      "value": "",
+      "description": "Name of the app"
+    },
+    {
+      "name": "applicationVersion",
+      "type": "string",
+      "value": "",
+      "description": "Version of the app"
+    },
+    {
+      "name": "requestID",
+      "type": "string",
+      "value": "",
+      "description": "UUID of the request"
+    },
+    {
+      "name": "requestTimestamp",
+      "type": "string",
+      "value": "",
+      "description": "Current Timestamp of the actual moment"
+    },
+    {
+      "name": "externalID",
+      "type": "string",
+      "value": "",
+      "description": "External ID "
+    }
+  ]
+}
