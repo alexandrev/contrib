@@ -1,0 +1,40 @@
+{
+  "name": "fwk-flowctx",
+  "author": "Alexandre Vazquez",
+  "version": "1.0.0",
+  "type": "flogo:activity",
+  "title": "GetFlowContext",
+  "display": {
+    "description": "Generate Context to be used as part of the flow",
+    "category": "Framework",
+    "visible": true
+  },
+  "ref": "github.com/alexandrev/contrib/activity/flowctx",
+  
+  "outputs":[
+    {
+      "name": "flow",
+      "type": "string",
+      "value": "",
+      "description": "Name of the flow in which activity is executing"
+    },
+    {
+      "name": "flowID",
+      "type": "string",
+      "value": "",
+      "description": "Id of the flow"
+    },
+    {
+      "name": "appName",
+      "type": "string",
+      "value": "",
+      "description": "Name of the app"
+    },
+    {
+      "name": "appVersion",
+      "type": "string",
+      "value": "",
+      "description": "Version of the app"
+    }
+  ]
+}
