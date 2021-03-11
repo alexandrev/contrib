@@ -1,4 +1,4 @@
-module github.com/project-flogo/contrib/function/datetime
+module github.com/project-flogo/contrib/function/datetimeExt
 
 go 1.15
 
