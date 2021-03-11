@@ -1,4 +1,4 @@
-module github.com/project-flogo/contrib/function/datetimeExt
+module github.com/alexandrev/contrib/function/datetimeExt
 
 go 1.15
 
