@@ -26,7 +26,7 @@ func (s *IsoDateToUnix) GetCategory() string {
 }
 
 func (s *IsoDateToUnix) Sig() (paramTypes []data.Type, isVariadic bool) {
-	return []data.Type{data.TypeString, data.TypeString}, false
+	return []data.Type{data.TypeString}, false
 }
 
 func (s *IsoDateToUnix) Eval(params ...interface{}) (interface{}, error) {
