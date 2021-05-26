@@ -6,7 +6,7 @@
     "title": "TCI Query format",
     "display": {
         "description": "Format query to be use in TCI exporter for Proemtheus",
-        "category": "Prometheus",
+        "category": "PrometheusQuery",
         "visible": true
     },
     "feature": {
