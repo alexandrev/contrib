@@ -6,7 +6,7 @@
     "title": "TCI Stats to Prometheus Format",
     "display": {
         "description": "Adapt from TCI Metrics Stats to Prometheus Format",
-        "category": "Default",
+        "category": "Prometheus",
         "visible": true
     },
     "feature": {
