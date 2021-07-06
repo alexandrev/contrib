@@ -4,6 +4,10 @@
     "version": "1.0.0",
     "type": "flogo:activity",
     "title": "TCI Stats to Prometheus Format",
+    "display": {
+        "description": "Adapt from TCI Metrics Stats to Prometheus Format",
+        "visible": true
+    },
     "feature": {
         "iterator": {
             "type": "iterator",
