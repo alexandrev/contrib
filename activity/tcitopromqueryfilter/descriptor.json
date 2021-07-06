@@ -4,6 +4,7 @@
     "version": "1.0.0",
     "type": "flogo:activity",
     "title": "TCI Query format",
+    "description": "TCI Query format",
     "feature": {
         "iterator": {
             "type": "iterator",
