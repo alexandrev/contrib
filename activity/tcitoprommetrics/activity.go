@@ -92,8 +92,9 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 				pLabels := make(map[string]string)
 				pLabels["flowName"] = flow.FlowName
 				pLabels["appName"] = appName
-				pLabels["appInstance"] = appID
+				pLabels["appID"] = appID
 				pLabels["appType"] = appType
+				pLabels["appInstance"] = instanceMetric.AppInstance
 
 				if appType != "" && appName != "" && appID != "" {
 
@@ -130,22 +131,28 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
 		pLabelsApp["appName"] = appName
 		pLabelsApp["appType"] = appType
+		pLabelsApp["appID"] = appType
 
-		for _, a := range metric.AppMetrics.TciAppInstancesCPU {
+		for _, appMetric := range metric.AppMetrics {
 
-			println(a.Labels.Status)
-			if a.Labels.Status != "" {
-				pAppCPUUsage := list.Create(a.Labels.Status+"_app_cpu_usage", "CPU Usage Percentage", "gauge")
-				pAppCPUUsage.Add(pLabelsApp, float64(a.Value))
+			pLabelsApp["appInstance"] = appMetric.InstanceId
+
+			for _, a := range appMetric.TciAppInstancesCPU {
+
+				println(a.Labels.Status)
+				if a.Labels.Status != "" {
+					pAppCPUUsage := list.Create(a.Labels.Status+"_app_cpu_usage", "CPU Usage Percentage", "gauge")
+					pAppCPUUsage.Add(pLabelsApp, float64(a.Value))
+				}
 			}
-		}
 
-		for _, a := range metric.AppMetrics.TciAppInstancesMemory {
+			for _, a := range appMetric.TciAppInstancesMemory {
 
-			println(a.Labels.Status)
-			if a.Labels.Status != "" {
-				pAppMemoryUsage := list.Create(a.Labels.Status+"_app_memory_used", "Memory Used Percentage", "gauge")
-				pAppMemoryUsage.Add(pLabelsApp, float64(a.Value))
+				println(a.Labels.Status)
+				if a.Labels.Status != "" {
+					pAppMemoryUsage := list.Create(a.Labels.Status+"_app_memory_used", "Memory Used Percentage", "gauge")
+					pAppMemoryUsage.Add(pLabelsApp, float64(a.Value))
+				}
 			}
 		}
 

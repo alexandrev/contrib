@@ -4,11 +4,6 @@
     "version": "1.0.0",
     "type": "flogo:activity",
     "title": "TCI Query format",
-    "display": {
-        "description": "Format query to be use in TCI exporter for Proemtheus",
-        "category": "Prometheus2",
-        "visible": true
-    },
     "feature": {
         "iterator": {
             "type": "iterator",
