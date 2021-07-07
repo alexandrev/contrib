@@ -15,7 +15,7 @@
             "enabled": true
         }
     },
-    "ref": "github.com/alexandrev/contrib/activity/tcitoprommetrics",
+    "ref": "github.com/alexandrev/contrib/monitoring/activity/tcitoprommetrics",
     "inputs": [
         {
             "name": "appMetrics",
