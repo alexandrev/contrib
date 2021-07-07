@@ -1,5 +1,5 @@
 {
-    "name": "getClaims",
+    "name": "prometheus-format",
     "author": "Alexandre Vazquez",
     "version": "1.0.0",
     "type": "flogo:activity",
