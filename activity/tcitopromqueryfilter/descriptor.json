@@ -6,7 +6,8 @@
     "title": "TCI Query format",
     "display": {
         "description": "Adapt from TCI Metrics Stats to Prometheus Format",
-        "visible": true
+        "visible": true,
+        "category": "Monitoring"
     },
     "feature": {
         "iterator": {
